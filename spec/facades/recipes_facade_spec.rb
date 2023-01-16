@@ -32,10 +32,20 @@ RSpec.describe 'Recipes Facade' do
 
     describe '::get_random_country' do 
       it 'returns a random country name from the Country Service API' do 
-        VCR.use_cassette('facade_get_random_country') do 
-          country_name = RecipesFacade.get_random_country
-          expect(country_name).to be_a(String)
-        end
+        VCR.insert_cassette('facade_get_random_country') 
+        
+        country_name_1 = RecipesFacade.get_random_country
+        
+        VCR.eject_cassette('facade_get_random_country')
+        VCR.insert_cassette('facade_get_random_country')
+        
+        country_name_2 = RecipesFacade.get_random_country
+   
+        expect(country_name_1).to be_a(String)
+        expect(country_name_2).to be_a(String)
+        expect(country_name_1).to_not eq(country_name_2)
+
+        VCR.eject_cassette('facade_get_random_country')
       end
     end
   end
