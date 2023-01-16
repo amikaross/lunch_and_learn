@@ -32,6 +32,8 @@ RSpec.describe 'recipes request API' do
     end
 
     it 'returns a collection of recipes for a random country if none is provided' do 
+      allow(RecipesFacade).to receive(:get_random_country).and_return("Republic of Kosovo")
+
       VCR.use_cassette('random_country_recipes') do 
         get '/api/v1/recipes'
 
