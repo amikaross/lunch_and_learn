@@ -61,5 +61,35 @@ RSpec.describe 'recipes request API' do
         end
       end
     end
+
+    it 'returns an empty array if the country parameter is an empty string or a country with no results' do 
+      VCR.use_cassette('empty_string_as_country') do 
+        get '/api/v1/recipes?country='
+
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+
+        response_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response_body[:data]).to eq([])
+        expect(response_body).to_not have_key(:id)
+        expect(response_body).to_not have_key(:type)
+        expect(response_body).to_not have_key(:attributes)
+      end
+
+      VCR.use_cassette('fake_country_as_country') do 
+        get '/api/v1/recipes?country=zamboniland'
+
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+
+        response_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response_body[:data]).to eq([])
+        expect(response_body).to_not have_key(:id)
+        expect(response_body).to_not have_key(:type)
+        expect(response_body).to_not have_key(:attributes)
+      end
+    end
   end
 end
