@@ -29,5 +29,21 @@ RSpec.describe 'learning resources request API' do
         end
       end
     end
+
+    it 'should return video: {} and/or images: [] if one is not found' do 
+      VCR.use_cassette('no_images_found') do 
+        get '/api/v1/learning_resources?country=amandaross'
+
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+
+        response_body = JSON.parse(response.body, symbolize_names: true)
+
+        resource = response_body[:data]
+
+        expect(resource[:attributes][:video]).to eq({})
+        expect(resource[:attributes][:images]).to eq([])
+      end
+    end
   end
 end
