@@ -44,92 +44,74 @@ If you would like to demo this API on your local machine:
   1. To demo endpoints in postman or other tool, run `rails s` and use base url `http://localhost:3000` to explore the available endpoints
 
 ## Endpoints
-<details close>
-<summary> Get User by Bīk-n-Brü id</summary><br>
-
-  - GET "/api/v1/users/:id"<br>
-  - Sample response body: <br>
-    ```
-      {
-        "data": {
-            "id": "2",
-            "type": "user",
-            "attributes": {
-                "username": "testcase",
-                "token": "12345abcde",
-                "athlete_id": "12345",
-                "city": "Not a city",
-                "state": "Not a state"
-              }
-          }
-      }
-    ```
-  
-</details>
 
 <details close>
-<summary> Get User by Strava Athlete id</summary><br>
+<summary> Get Recipes By Country</summary><br>
 
-  - GET "/api/v1/users/:athlete_id?q=athlete_id"
-  - Sample response body: 
-    ```
-      {
-        "data": {
-            "id": "2",
-            "type": "user",
-            "attributes": {
-                "username": "testcase",
-                "token": "12345abcde",
-                "athlete_id": "12345",
-                "city": "Not a city",
-                "state": "Not a state"
-              }
-          }
-      }
-    ```
-</details>
-
-<details close>
-<summary> Get Leaderboard Information</summary><br>
-
-  - GET "/api/v1/leaderboard"
+  - GET "/api/v1/recipes?country=country_name"
   - Sample response body: 
     ```
       {
         "data": [
-          {
-              "id": "",
-              "type": "leader",
-              "attributes": {
-                  "username": "Muzgash",
-                  "miles": 3039.5499999999997,
-                  "beers": 363,
-                  "co2_saved": 2735.6200000000003
-              }
-          },
-          {
-              "id": "",
-              "type": "leader",
-              "attributes": {
-                  "username": "Eofor",
-                  "miles": 3027.1300000000006,
-                  "beers": 365,
-                  "co2_saved": 2724.4199999999996
-              }
-          },
-          {
-              "id": "",
-              "type": "leader",
-              "attributes": {
-                  "username": "Gléowine",
-                  "miles": 3021.000000000001,
-                  "beers": 360,
-                  "co2_saved": 2718.93
-              }
-          },
-          {...},
-          {...},
-        ...
+            {
+                "id": null,
+                "type": "recipe",
+                "attributes": {
+                    "title": "Andy Ricker's Naam Cheuam Naam Taan Piip (Palm Sugar Simple Syrup)",
+                    "url": "https://www.seriouseats.com/recipes/2013/11/andy-rickers-naam-cheuam-naam-taan-piip-palm-sugar-simple-syrup.html",
+                    "country": "thailand",
+                    "image": "https://edamam-product-images.s3.amazonaws.com..."
+                }
+            },
+            {
+                "id": null,
+                "type": "recipe",
+                "attributes": {
+                    "title": "THAI COCONUT CREMES",
+                    "url": "https://food52.com/recipes/37220-thai-coconut-cremes",
+                    "country": "thailand",
+                    "image": "https://edamam-product-images.s3.amazonaws.com..."
+                }
+            },
+            {...},
+            {...},
+          ...
+        ]
+      }
+    ```
+</details>
+
+<details close>
+<summary> Get Recipes for Random Country</summary><br>
+
+  - GET "/api/v1/recipes"
+  - Sample response body: 
+    ```
+      {
+        "data": [
+            {
+                "id": null,
+                "type": "recipe",
+                "attributes": {
+                    "title": "Andy Ricker's Naam Cheuam Naam Taan Piip (Palm Sugar Simple Syrup)",
+                    "url": "https://www.seriouseats.com/recipes/2013/11/andy-rickers-naam-cheuam-naam-taan-piip-palm-sugar-simple-syrup.html",
+                    "country": "thailand",
+                    "image": "https://edamam-product-images.s3.amazonaws.com..."
+                }
+            },
+            {
+                "id": null,
+                "type": "recipe",
+                "attributes": {
+                    "title": "THAI COCONUT CREMES",
+                    "url": "https://food52.com/recipes/37220-thai-coconut-cremes",
+                    "country": "thailand",
+                    "image": "https://edamam-product-images.s3.amazonaws.com..."
+                }
+            },
+            {...},
+            {...},
+          ...
         ]
       }
     ```
@@ -137,38 +119,34 @@ If you would like to demo this API on your local machine:
 
 
 <details close>
-<summary> Update a User's Information</summary><br>
+<summary> Get Learning Resources By Country</summary><br>
 
-  - PATCH "/api/v1/users/:user_id"<br>
-  - Sample request body: <br>
-    ```
-       {
-          "user": {
-              "data": {
-                          "city":"Eugene", 
-                          "state":"Oregon"
-                      }
-          }
-      }
-    ```
+  - GET "/api/v1/learning_resources?country=country_name"<br>
   - Sample response body: <br>
     ```
       {
-        :data=>{
-            :id=>"5",
-            :type=>"user",
-            :attributes=>{
-                :username=>"testcase",
-                :token=>"12345abcde",
-                :athlete_id=>"12345",
-                :city=>"Eugene",
-                :state=>"Oregon"
-                }, 
-                  :relationships=>
-                    {:activities=>{
-                      :data=>[]
-                  }
-              }
+        "data": {
+            "id": null,
+            "type": "learning_resource",
+            "attributes": {
+                "country": "laos",
+                "video": {
+                    "title": "A Super Quick History of Laos",
+                    "youtube_video_id": "uw8hjVqxMXw"
+                },
+                "images": [
+                    {
+                        "alt_tag": "time lapse photography of flying hot air balloon",
+                        "url": "https://images.unsplash.com/photo-1540611025311-01df3cef54b5..."
+                    },
+                    {
+                        "alt_tag": "aerial view of city at daytime",
+                        "url": "https://images.unsplash.com/photo-1570366583862-f91883984fde..."
+                    },
+                    {...},
+                    {...},
+                  ...
+              ]
           }
       }
     ```
@@ -180,315 +158,81 @@ If you would like to demo this API on your local machine:
   - POST "/api/v1/users"<br>
   - Sample request body: <br>
     ```
-       {
-          "user": {
-              "data": {
-                          "athlete_id":"12345678910112", 
-                          "username":"testcase5", 
-                          "token":"12345abcde"
-                      }
-          }
+      {
+        "name": "Athena Dao",
+        "email": "athenadao@bestgirlever.com"
       }
     ```
   - Sample response body: <br>
     ```
       {
-        :data=>{
-            :id=>"5",
-            :type=>"user",
-            :attributes=>{
-                :username=>"testcase5",
-                :token=>"12345abcde",
-                "athlete_id":"12345678910112",
-                :city=>"Eugene",
-                :state=>"Oregon"
-                }, 
-                  :relationships=>
-                    {:activities=>{
-                      :data=>[]
-                  }
-              }
+        "data": {
+          "type": "user",
+          "id": "1",
+          "attributes": {
+            "name": "Athena Dao",
+            "email": "athenadao@bestgirlever.com",
+            "api_key": "jgn983hy48thw9begh98h4539h4"
           }
+        }
       }
     ```
 </details>
 
 <details close>
-<summary> Get Breweries in a User's Local Area</summary><br>
+<summary> Create a New Favorite</summary><br>
 
-  - GET "/api/v1/breweries/:user_id"
-  - Sample response body:
-    ```
-      {
-        "data": [
-            {
-                "id": "10-barrel-brewing-co-denver-denver",
-                "type": "brewery",
-                "attributes": {
-                    "name": "10 Barrel Brewing Co - Denver",
-                    "street_address": "2620 Walnut St",
-                    "city": "Denver",
-                    "state": "Colorado",
-                    "zipcode": "80205-2231",
-                    "phone": "7205738992",
-                    "website_url": null
-                }
-            },
-            {
-                "id": "14er-brewing-company-denver",
-                "type": "brewery",
-                "attributes": {
-                    "name": "14er Brewing Company",
-                    "street_address": "2801 Walnut St",
-                    "city": "Denver",
-                    "state": "Colorado",
-                    "zipcode": "80205-2235",
-                    "phone": "7207731437",
-                    "website_url": "http://www.14erBrewing.com"
-                }
-            },
-            {
-                "id": "aero-craft-brewing-denver",
-                "type": "brewery",
-                "attributes": {
-                    "name": "Aero Craft Brewing",
-                    "street_address": null,
-                    "city": "Denver",
-                    "state": "Colorado",
-                    "zipcode": "80212-2199",
-                    "phone": "3039185446",
-                    "website_url": "http://www.aerocraft.beer"
-                }
-            },
-            {...},
-            {...},
-          ...
-        ]
-      }
-    ```
-</details>
-
-<details close>
-<summary> Get Index of User Activities</summary><br>
-
-  - GET "/api/v1/users/:user_id/activities"<br>
-  - Sample response body: <br>
-    ```
-      {
-        "data": [
-            {
-                "id": "701",
-                "type": "activity",
-                "attributes": {
-                    "brewery_name": "Mirella Jenkins",
-                    "distance": 92.64,
-                    "calories": 2779,
-                    "num_drinks": 11,
-                    "drink_type": "Racer 5 India Pale Ale, Bear Republic Bre",
-                    "dollars_saved": 14.74,
-                    "lbs_carbon_saved": 83.38,
-                    "created_at": "2023-01-10T13:18:37.335Z",
-                    "user_id": 15
-                },
-                "relationships": {
-                    "user": {
-                        "data": {
-                            "id": "15",
-                            "type": "user"
-                        }
-                    }
-                }
-            },
-            {
-                "id": "702",
-                "type": "activity",
-                "attributes": {
-                    "brewery_name": "Henry Adams",
-                    "distance": 65.33,
-                    "calories": 1959,
-                    "num_drinks": 8,
-                    "drink_type": "Stone IPA",
-                    "dollars_saved": 10.39,
-                    "lbs_carbon_saved": 58.8,
-                    "created_at": "2023-01-10T13:18:37.354Z",
-                    "user_id": 15
-                },
-                "relationships": {
-                    "user": {
-                        "data": {
-                            "id": "15",
-                            "type": "user"
-                        }
-                    }
-                }
-            },
-            {...},
-            {...},
-          ...
-        ]
-      }
-    ```
-</details>
-
-<details close>
-<summary> Get Activity by Bīk-n-Brü Activity id</summary><br>
-
-  - GET "/api/v1/acitivities/:activity_id"<br>
-  - Sample response body: <br>
-    ```
-      {
-          "data": {
-              "id": "701",
-              "type": "activity",
-              "attributes": {
-                  "brewery_name": "Mirella Jenkins",
-                  "distance": 92.64,
-                  "calories": 2779,
-                  "num_drinks": 11,
-                  "drink_type": "Racer 5 India Pale Ale, Bear Republic Bre",
-                  "dollars_saved": 14.74,
-                  "lbs_carbon_saved": 83.38,
-                  "created_at": "2023-01-10T13:18:37.335Z",
-                  "user_id": 15
-              },
-              "relationships": {
-                  "user": {
-                      "data": {
-                          "id": "15",
-                          "type": "user"
-                      }
-                  }
-              }
-          }
-      }
-    ```
-  
-</details>
-
-<details close>
-<summary> Create A New Activity</summary><br>
-
-  - POST "/api/v1/activities"<br>
+  - POST "/api/v1/favorites"<br>
   - Sample request body: <br>
     ```
       {
-          "activity": {
-              "data": {
-                          "brewery_name": "Name",
-                          "drink_type": "IPA",
-                          "user_id": "15"
-                      }
-          }
+          "api_key": "jgn983hy48thw9begh98h4539h4",
+          "country": "thailand",
+          "recipe_link": "https://www.tastingtable.com/.....",
+          "recipe_title": "Crab Fried Rice (Khaao Pad Bpu)"
       }
     ```
   - Sample response body: <br>
     ```
       {
-          "data": {
-              "id": "701",
-              "type": "activity",
-              "attributes": {
-                  "brewery_name": "Name",
-                  "distance": 92.64,
-                  "calories": 2779,
-                  "num_drinks": 11,
-                  "drink_type": "IPA",
-                  "dollars_saved": 14.74,
-                  "lbs_carbon_saved": 83.38,
-                  "created_at": "2023-01-10T13:18:37.335Z",
-                  "user_id": 15
-              },
-              "relationships": {
-                  "user": {
-                      "data": {
-                          "id": "15",
-                          "type": "user"
-                      }
-                  }
-              }
-          }
+        "success": "Favorite added successfully"
       }
     ```
 </details>
 
 <details close>
-<summary> Get Index of User Badges</summary><br>
+<summary> Get User's Favorites</summary><br>
 
-  - GET "/api/v1/users/:user_id/badges"<br>
+  - GET "/api/v1/favorites/?api_key=user_api_key"<br>
   - Sample response body: <br>
     ```
       {
         "data": [
             {
-                "id": "141",
-                "type": "badge",
+                "id": "1",
+                "type": "favorite",
                 "attributes": {
-                    "title": "Completed 1 Activity"
-                },
-                "relationships": {
-                    "user": {
-                        "data": {
-                            "id": "15",
-                            "type": "user"
-                        }
-                    }
+                    "recipe_title": "Recipe: Egyptian Tomato Soup",
+                    "recipe_link": "http://www.thekitchn.com/recipe-egyptian-tomato-soup-weeknight....",
+                    "country": "egypt",
+                    "created_at": "2022-11-02T02:17:54.111Z"
                 }
             },
             {
-                "id": "142",
-                "type": "badge",
+                "id": "2",
+                "type": "favorite",
                 "attributes": {
-                    "title": "Cycled 100 miles"
-                },
-                "relationships": {
-                    "user": {
-                        "data": {
-                            "id": "15",
-                            "type": "user"
-                        }
-                    }
+                    "recipe_title": "Crab Fried Rice (Khaao Pad Bpu)",
+                    "recipe_link": "https://www.tastingtable.com/.....",
+                    "country": "thailand",
+                    "created_at": "2022-11-07T03:44:08.917Z"
                 }
-            },
-            {
-                "id": "143",
-                "type": "badge",
-                "attributes": {
-                    "title": "Cycled 500 miles"
-                },
-                "relationships": {
-                    "user": {
-                        "data": {
-                            "id": "15",
-                            "type": "user"
-                        }
-                    }
-                }
-            },
-            {...},
-            {...},
-          ...
-        ]
-      }
+            }
+          ]
+       }    
     ```
   
 </details>
-
-<details close>
-<summary> Get Current Gas Price For User</summary><br>
-
-  - GET "/api/v1/gas_price/:user_id"<br>
-  - Sample response body: <br>
-    ```
-      {
-          "data": {
-              "state": "Colorado",
-              "gas_price": 3.129
-          }
-      }
-    ```
-  
-</details>
-
 
 ## Contact
 
