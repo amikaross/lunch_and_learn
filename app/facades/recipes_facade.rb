@@ -9,7 +9,7 @@ class RecipesFacade
 
   def self.get_random_country
     countries = CountryService.get_country
-    names = countries.map { |country| country[:name][:official] }
+    names = countries.map { |country| country[:name][:common] }
     names.sample
   end
 end
