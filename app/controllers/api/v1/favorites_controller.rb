@@ -2,7 +2,7 @@ class Api::V1::FavoritesController < ApplicationController
   def create
     user = User.find_by(api_key: params[:api_key])
     if user.nil?
-      render json: ErrorSerializer.bad_request("User does not exist"), status: :bad_request
+      render json: ErrorSerializer.bad_request("Invalid API Key"), status: :bad_request
     else
       favorite = user.favorites.new(favorite_params)
       if favorite.save

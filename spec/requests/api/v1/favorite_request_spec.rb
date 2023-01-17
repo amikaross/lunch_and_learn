@@ -60,7 +60,7 @@ RSpec.describe 'favorite request API' do
       expect(response_body).to have_key(:message)
       expect(response_body[:message]).to eq('Bad Request')
       expect(response_body).to have_key(:errors)
-      expect(response_body[:errors]).to eq('User does not exist')
+      expect(response_body[:errors]).to eq('Invalid API Key')
     end
 
     it 'returns an error if its missing any required attributes' do 
