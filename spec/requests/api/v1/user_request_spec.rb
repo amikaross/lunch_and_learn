@@ -56,11 +56,27 @@ RSpec.describe 'user request API' do
 
       post "/api/v1/users", headers: headers, params: JSON.generate(user_info)
 
+      expect(User.all.length).to eq(1)
       expect(response.status).to eq(400)
       response_body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response_body[:message]).to eq("Bad Request")
       expect(response_body[:errors]).to eq(["Email has already been taken"])
+    end
+
+    it 'responds with an error if its missing any required attributes' do 
+      user_info = {
+        name: 'Frodo Baggins'
+      }
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post "/api/v1/users", headers: headers, params: JSON.generate(user_info)
+
+      expect(response.status).to eq(400)
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response_body[:message]).to eq("Bad Request")
+      expect(response_body[:errors]).to eq(["Email can't be blank"])
     end
   end
 end
