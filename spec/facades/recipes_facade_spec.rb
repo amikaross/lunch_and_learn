@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Recipes Facade' do 
+RSpec.describe RecipesFacade do 
   describe 'class methods' do 
     describe '::recipes_by_country' do 
       it 'returns a collection of recipe objects for a given country' do 
