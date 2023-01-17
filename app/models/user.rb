@@ -6,6 +6,6 @@ class User < ApplicationRecord
   before_save :generate_api_key
 
   def generate_api_key
-    self.api_key = SecureRandom.alphanumeric(28)
+    self.api_key = SecureRandom.alphanumeric(28) if self.api_key.nil?
   end
 end
